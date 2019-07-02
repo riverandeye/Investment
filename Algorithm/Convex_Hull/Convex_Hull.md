@@ -24,13 +24,13 @@ Graham Scan(Dots)
 
 From Introduction to Algorithms
 
-![1562041418467](C:\Users\tony0\AppData\Roaming\Typora\typora-user-images\1562041418467.png)
+![GraHam-Scan](./Image/1562041418467.png)
 
 
 
 위 알고리즘을 따르면, 밑과 같은 순서로 Convex Hull 이 구성된다.
 
-![1562047577781](C:\Users\tony0\AppData\Roaming\Typora\typora-user-images\1562047577781.png)
+![Graham-Scan Demo](./Image/1562047577781.png)
 
 
 
@@ -44,7 +44,7 @@ From Introduction to Algorithms
 
 실제 acos 함수를 사용하여 각도를 계산하는 것 보다, cos 값을 비교하는 것이 효율적이다.
 
-![1562037082890](C:\Users\tony0\AppData\Roaming\Typora\typora-user-images\1562037082890.png)
+![get_angle_examplecode](./Image/1562037082890.png)
 
 물론, 각도가 작다는 것은 cos 값이 크다는 것을 의미하므로, 정렬의 방향에 주의하도록 하자.
 
@@ -52,7 +52,7 @@ From Introduction to Algorithms
 
 #### 반시계 방향으로 회전하는지 어떻게 알지?
 
-![1562045992244](C:\Users\tony0\AppData\Roaming\Typora\typora-user-images\1562045992244.png)
+![Vector_rotation](./Image/1562045992244.png)
 
 위 공식에서 세타가 0보다 크기 위해선, x1y2 - y1x2 의 크기가 0보다 커야한다.
 
