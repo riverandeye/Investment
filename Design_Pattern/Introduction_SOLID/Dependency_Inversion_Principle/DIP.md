@@ -4,7 +4,7 @@
 - Abstraction이 detail에 의존해서는 안된다. detail이 Abstraction에 의존해야 한다.
 - 프레임워크 개발의 기본이 됩니다
 
-<br><br>
+<br>
 
 예제 코드를 통해 이해해 봅시다.
 
@@ -56,7 +56,7 @@ struct Research // high-level
 
 이를 위해, Relationship은 상위 레벨에게 정보를 제공할 abstraction을 따로 마련하여, 해당 추상화를 매개로 정보를 전달해야 합니다. (말이 좀 어려운데, 밑에 코드를 참고하시면 이해하기 쉽습니다.)
 
-<br><br>
+<br>
 
 ```c++
 struct RelationshipBrowser
