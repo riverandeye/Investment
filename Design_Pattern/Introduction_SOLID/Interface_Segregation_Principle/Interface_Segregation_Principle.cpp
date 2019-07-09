@@ -1,4 +1,5 @@
 #include <vector>
+
 struct Document;
 
 //struct IMachine
