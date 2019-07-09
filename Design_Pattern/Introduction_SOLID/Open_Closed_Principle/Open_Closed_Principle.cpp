@@ -16,7 +16,7 @@ struct Product
 	Size size;
 };
 
-/* ÀÌ·¸°Ô Â¥´Â°Ç ÁÁÁö ¾Ê´Ù.*/
+/* ï¿½Ì·ï¿½ï¿½ï¿½ Â¥ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½.*/
 struct ProductFilter
 {
 	typedef vector<Product*> Items;
@@ -46,24 +46,17 @@ struct ProductFilter
 	}
 };
 
-template <typename T> struct AndSpecification;
 
 template <typename T> struct Specification{
 	virtual ~Specification() = default;
 	virtual bool is_satisfied(T* item) const = 0;
 
-	// and ±â´ÉÀ» Ãß°¡ÇÏ±â À§ÇØ Pure virtual classÀÎ Specification À» º¯°æÇÏ´Â°Ç OCP ¿øÄ¢¿¡ ¾î±ß³­´Ù // 
+	// and ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ Pure virtual classï¿½ï¿½ Specification ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´Â°ï¿½ OCP ï¿½ï¿½Ä¢ï¿½ï¿½ ï¿½ï¿½ß³ï¿½ï¿½ï¿½ // 
 	/*AndSpecification<T> operator&&(Specification<T>&& other)
 	{
 	  return AndSpecification<T>(*this, other);
 	}*/
 };
-
-// new: 
-template <typename T> AndSpecification<T> operator&&
-(const Specification<T>& first, const Specification<T>& second){
-	return { first, second };
-}
 
 template <typename T> struct Filter
 {
@@ -104,12 +97,18 @@ struct SizeSpecification : Specification<Product>
 	{
 	}
 
-
 	bool is_satisfied(Product* item) const override {
 		return item->size == size;
 	}
 };
+// new: 
 
+template <typename T> struct AndSpecification;
+
+template <typename T> AndSpecification<T> operator&&
+(const Specification<T>& first, const Specification<T>& second){
+	return { first, second };
+}
 template <typename T> struct AndSpecification : Specification<T>
 {
 	const Specification<T>& first;
@@ -137,7 +136,6 @@ void Open_Closed_Principle(){
 	auto green_things = bf.filter(all, green);
 	for (auto& x : green_things)
 		cout << x->name << " is green\n";
-
 
 	SizeSpecification large(Size::large);
 	AndSpecification<Product> green_and_large(green, large);
