@@ -48,3 +48,4 @@ struct PersistentManager {
 
 여기선 class를 Journal만 input으로 받게 했는데, "매체" 와 같은 Abstract class를 따로 정의하여 인터페이스로 이용한다면 OCP(Open Closed Principle)를 지킬 수 있을 것이다.
 
+이러한 방식으로 해당 클래스가 하나의 역할을 하게끔 하면 불필요한 코드 생산을 막을 수 있고 기능 추가에 유연해질 수 있다.
