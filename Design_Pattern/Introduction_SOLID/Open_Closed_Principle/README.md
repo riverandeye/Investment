@@ -90,5 +90,60 @@ Specification 은, Template T에 해당하는 인스턴스가 특정 기준을 �
 
 이렇게 구성할 시 장점은, 마치 정수기의 소켓을 넣는 것 처럼, 개별적으로 구성된 Specification을 Filter에 input으로 넣어주기만 하면, 그 기준에 대해서 filtering을 해주는 것이다. 모듈화된 아름다운 코드이다. 
 
-이제 실제로 특정 기준에 따라 
+이제 실제로 특정 기준에 따라 Specification 하는 클래스를 만들어야 한다.
 
+```c++
+struct ColorSpecification : Specification<Product>
+{
+	Color color;
+
+	ColorSpecification(Color color) : color(color) {}
+
+	bool is_satisfied(Product* item) const override {
+		return item->color == color;
+	}
+};
+
+struct SizeSpecification : Specification<Product>
+{
+	Size size;
+
+	explicit SizeSpecification(const Size size)
+		: size{ size }
+	{
+	}
+
+
+	bool is_satisfied(Product* item) const override {
+		return item->size == size;
+	}
+};
+
+template <typename T> struct AndSpecification : Specification<T>
+{
+	const Specification<T>& first;
+	const Specification<T>& second;
+
+	AndSpecification(const Specification<T>& first, const Specification<T>& second)
+		: first(first), second(second) {}
+
+	bool is_satisfied(T* item) const override {
+		return first.is_satisfied(item) && second.is_satisfied(item);
+	}
+};
+```
+
+위와 같이, Specification을 상속하여 필터에 넣을 Specification을 만들어 줄 수 있으며, 2가지 경우 모두를 기준으로 하고 싶은 경우 Andspecification 과 같이 2개의 Specification을 필요로 하는 새로운 클래스를 형성해주면 된다.
+
+```C++
+template <typename T> AndSpecification<T> operator&&
+(const Specification<T>& first, const Specification<T>& second){
+	return { first, second };
+}
+```
+
+편하게 사용하기 위해서 && operator를 override 해주어, 독립된 specification을 구성한 후 and operator로 붙여서 andspecification을 리턴받으면 된다.
+
+<br>
+
+위와 같이 코드를 구성할 시 병합을 위해 이전 코드를 수정할 필요가 없을 뿐더러 조건을 추가하는 일 이 수월해진다. 이러한 코드가 Open_Closed_Principle을 만족한 것이라고 할 수 있다.
