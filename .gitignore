@@ -1,0 +1,31 @@
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.pptx
+*.docx
+*.ppt
+*.pptx
+*.xls
+*.xlsx
+*.pdf
+
+# logs
+*.log
+upload/
+logs/
+
+# OSfiles
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+#vs
+*.vs
+*.vscode

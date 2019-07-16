@@ -135,7 +135,7 @@ int main(){
         *pos = now;
         res.push_back(distance(DP.begin(),pos + 1));
     }
-    backtrace(N, DP.size());
+    backtrace(N-1, DP.size());
     printf("%d", DP.size());    
     return 0;
 }
