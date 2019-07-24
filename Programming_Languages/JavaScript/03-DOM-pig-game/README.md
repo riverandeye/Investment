@@ -94,8 +94,3 @@ document.querySelector('.dice').style.display = 'none'; // class 가져와서, �
   ```
 
 - 새로운 데이터를 render 해주고 싶으면 결국 Element나 query를 가져와서, 매번 갱신해주어야 한다.
-
-
-
-### Challenge
-
