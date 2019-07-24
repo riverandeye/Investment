@@ -4,5 +4,5 @@
 
 ### Questions
 
-- Object 생성 시 new를 쓰고 안쓰고의 차이
+- Promise를 어떻게 해야 제대로 쓸 까 ..
 
