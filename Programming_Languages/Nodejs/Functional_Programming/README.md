@@ -1,7 +1,5 @@
 # Functional Programming 
 
-<br>
-
 ### What is Functional Programming
 
 - 함수형 프로그래밍이란 
@@ -11,8 +9,6 @@
 
 - 함수형 프로그래밍의 장점
   - 간결하고, 예측 가능하다.
-
-<br>
 
 #### Definitions
 
@@ -41,11 +37,7 @@
     - Side effect가 있는 함수 호출
   - 이걸 잘 피해야 프로그램을 더 쉽게 이해하고 테스트 할 수 있음.
 
-
-
 ## JavaScript 함수 사용 기본
-
-
 
 ### 함수 선언식 VS 함수 표현식
 
@@ -71,9 +63,7 @@
   - 함수는 Declaration만 호이스팅됨과 동시에 Initialize 되고, Expression은 호이스팅되지 않는다.
   - 그래서 Declaration한 함수는 Declaration 전에 사용할 수 있다.
 
-
-
-#### 함수 표현식의 장점
+#### 함수 표현식 장점
 
 - [클로져](https://github.com/riverandeye/Investment/Programming_Languages/JavaScript/Functional_Programming/Closure)로 사용할 수 있다.
 - 콜백으로 사용할 수 있다(다른 함수의 인자로 넘길 수 있음)
