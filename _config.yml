@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-=======
 theme: jekyll-theme-minimal
-plugins :
-    - jemoji
->>>>>>> f3d79f3ceac9d963ebfdb0412daa655afdf4b2a9
+plugins:
+  - jemoji
