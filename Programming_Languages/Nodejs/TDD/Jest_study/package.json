@@ -1,0 +1,15 @@
+{
+  "name": "jest_study",
+  "version": "1.0.0",
+  "description": "jest는 Tdd를 위한 함수이다.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start" : "node example.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
+}
