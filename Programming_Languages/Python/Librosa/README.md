@@ -23,5 +23,37 @@ y, sr = librosa.load(File)
 
 ### 1. STFT & Spectrogram
 
-- 
+- STFT에 대한 기본 개념은 [여기](https://github.com/riverandeye/Investment/tree/master/Engineering/Fourier_Transform) 에서 찾으실 수 있습니다.
 
+```python
+# read file
+File = '../Sample/mp3/Puzzle/Puzzle.mp3'
+y, sr = librosa.load(File)
+D = np.abs(librosa.stft(y))
+```
+
+librosa.stft(y) 는 complex value를 리턴하므로, np.abs를 통해 amplitude 형식으로 변경해 준다. (np.angle을 적용하면 각 시점마다 해당 frequency의 phase를 알려주지만, 아직 그걸 이용해서 뭔갈 하는 방법은 잘 모르겠음.)
+
+
+
+```python
+import librosa.display # 가끔씩 import 오류가 발생해서 그냥 명시해주자.
+#draw spectrogram
+librosa.display.specshow(librosa.amplitude_to_db(D, ref=np.max),  y_axis='log', x_axis='time')
+plt.title('Power spectrogram')
+plt.colorbar(format='%+2.0f dB')
+plt.tight_layout()
+plt.show()
+```
+
+STFT 결과를 spectrogram으로 나타내면 이러한 이미지가 나온다.
+
+![](./Images/Spectrogram_Puzzle.png)
+
+가로축은 실제 음원의 시간, 세로축은 해당 시간에 발생한 신호의 주파수와 Amplitude가 데시벨에 따른 색깔로 구분되어 있다. 밝은 색깔일수록 해당 시점에 의도한 주음일 가능성이 높다.
+
+
+
+### Reference
+
+- 
