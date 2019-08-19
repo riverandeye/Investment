@@ -5,12 +5,9 @@ import librosa.display
 import matplotlib.pyplot as plt
 
 # read file
-File = '../Sample/mp3/Kissin/Kissin_3.mp3'
+File = '../Sample/mp3/Puzzle/Puzzle.mp3'
 y, sr = librosa.load(File)
-
 D = np.abs(librosa.stft(y))
-print(y.shape)
-print(D.shape)
 
 #draw spectrogram
 librosa.display.specshow(librosa.amplitude_to_db(D, ref=np.max),  y_axis='log', x_axis='time')
