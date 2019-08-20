@@ -24,14 +24,16 @@
 
 ### Implementation
 
-- LLStack 구현 설명
+- LLStack (Linked List Stack)구현 설명
   - 입력된 value는 node 구조체에 저장한다.
   - Stack 구조체는 맨 위의 node의 주소를 가지고 있다.
   - 각 node는 바로 밑의 node의 주소를 가지고 있다.
   - 스택의 가장 밑 node의 next는 NULL 을 가르킨다.
 
 - ArrayStack 구현 설명
-  - 
+  - Stack 구조체가 Array의 Pointer를 갖고 있다.
+  - Stack의 Top은 Stack->size - 1 이다.
+  - Array의 Stack->size에 해당하는 index에 push된 값을 넣는다.
 
 
 
