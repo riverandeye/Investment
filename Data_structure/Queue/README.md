@@ -21,5 +21,5 @@ Queue는 자료구조 중의 하나로, **먼저 입력되는 정보가 먼저 �
   - 처음 Queue를 선언할 때 최대 Size를 주게끔 선언
   - Circular Queue 형식으로 구성, index가 maxSize를 초과할 시 나머지 연산으로 index가 초기화됨.
 - LLQueue (Linked List Queue)
-  - 
+  - node를 생성하여 Linked List 형태로 구현, node는 본인 다음에 들어온 node를 가르킴.
 
