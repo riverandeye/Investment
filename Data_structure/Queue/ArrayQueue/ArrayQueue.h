@@ -39,8 +39,8 @@ void Enqueue(Queue * queue, int value){
         printf("Queue is full! so you cannot push");
         return;
     }
-    queue->data[queue->front++] = value;
-    queue->front %= queue->maxSize;
+    queue->data[queue->rear++] = value;
+    queue->rear %= queue->maxSize;
     queue->size++;
 }
 
@@ -50,8 +50,8 @@ int Dequeue(Queue * queue){
         return -44444; // instead raise Error
     }
 
-    int ret = queue->data[queue->rear++];
-    queue->rear %= queue->maxSize;
+    int ret = queue->data[queue->front++];
+    queue->front %= queue->maxSize;
     queue->size--;
     return ret;
 }
@@ -59,16 +59,16 @@ int Dequeue(Queue * queue){
 void TraverseQueue(Queue *queue){
     printf("Size of this Queue : %d\n", queue->size);
     printf("Queue->front : %d, Queue->rear : %d\n", queue->front, queue->rear);
-    if(queue->front >= queue->rear){
-        for(int i = queue->rear; i <queue->front; i++){
+    if(queue->rear >= queue->front){
+        for(int i = queue->front; i <queue->rear; i++){
             printf("%d ", queue->data[i]);
         }
     }
     else{
-        for(int i = queue->rear; i < queue->maxSize; i++){
+        for(int i = queue->front; i < queue->maxSize; i++){
             printf("%d ", queue->data[i]);
         }
-        for(int i = 0; i < queue->front; i++){
+        for(int i = 0; i < queue->rear; i++){
             printf("%d ", queue->data[i]);
         }
     }
