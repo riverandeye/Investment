@@ -19,6 +19,8 @@
 
 ### React Component
 
+- UI의 각 부분을 재사용하기 쉽게 조각해놓은 것이다. 
+
 ```javascript
 import React, {Component} from 'react';
 import './App.css';
@@ -49,7 +51,152 @@ return (
 return React.createElement('div', {className:"App"}, React.createElement('h1', null, "Hi! I'm a React App"));
 ```
 
-위 두 return 은 같은 결과를 리턴한다. 
+위 두 return 은 같은 결과를 리턴한다. 밑의 방식보단 위의 방식이 훨씬 편해 보인다. HTML 값을 전달하는 것 처럼 보이지만, 실제로는 자바스크립트에서 동작하는 것으로 이를 JSX 라고 부른다.
+
+
+
+## JSX
+
+- React element 를 생성하는 코드
+- Real HTML Tag를 쓰는 것이 아니라, JSX가 지원하는 태그를 사용해야 한다.
+  - className : css class 를 지정해줌
+- 사용시 주의할 점
+  - 사용하는 스크립트 상단에 React 라이브러리를 꼭 불러와야 사용할 수 있음.
+  - 최상위 태그는 1개여야 함.
+  - 태그안에 들어가지 않는 경우만 태그를 바로 닫을 수 있음.
+- Fragment 태그 : 최상위 태그가 1개여야 한다는 조건에 의해 감싸주는 역할을 하는 태그
+
+
+
+### Functional Component
+
+그냥 함수형으로 JSX를 리턴하는 함수를 의미한다.
+
+```javascript
+import React from 'react';
+
+const person = ()=>{
+    return <p>I'm a Person!</p>
+} // for this binding
+
+export default person;
+```
+
+이를 index.js에 import 하여 그대로 붙였더니 화면에 렌더링이 된다.
+
+```javascript
+function tick() {
+    const element = (
+    <div>
+      <h3>현재 시각은 [{new Date().toLocaleTimeString()}] 입니다.</h3>
+      <Person/>
+    </div>
+    );
+    ReactDOM.render(element, document.getElementById('root'));
+  }
+  setInterval(tick, 1000);
+```
+
+이와 같이, 컴포넌트들은 쉽게 중복하여 사용될 수 있어 매우 편하다.
+
+
+
+### Dynamic Components
+
+같은 Component 라도 Dynamic 하게끔 변경하고 싶다면, JSX 내에 JS 함수를 사용하면 된다.
+
+```javascript
+import React from 'react';
+
+const person = ()=>{
+    return <p>I am a Person. I am {Math.floor(Math.random() * 30)} years old!</p>
+} // for this binding
+
+export default person;
+```
+
+
+
+### Using props
+
+함수형 컴포넌트의 인자를 넣을 수 있는데 , 하나의 Object가 입력되고, 해당 Object의 attribute를 사용하는 식으로 인자를 사용하게 된다.
+
+```javascript
+import React from 'react';
+
+const person = (props)=>{
+    return <p>I'm {props.name}. I'm {props.age} years old!</p>
+} // for this binding
+
+export default person;
+```
+
+이와 같이 정의된 함수를 jsx에서 사용하는 방식은 이러하다
+
+```javascript
+<Person name="KKH" age="3"/>
+```
+
+tag 안에 attribute를 정해서 입력해주면 된다.
+
+
+
+### Childern Property
+
+Component의 angle bracket 안의 대상들은, 해당 함수의 children property 로 입력된다.
+
+```javascript
+const person = (props)=>{
+    return (
+    <div>
+        <p>I'm {props.name}. I'm {props.age} years old!</p>
+        <p>{props.children}</p>
+    </div>
+    )
+}
+```
+
+위에서 Component의 props.children property를 p tag로 감싸었다.
+
+```javascript
+<Person name="KKH" age="3">My Hobbies : Racing</Person>
+```
+
+해당 jsx에 대하여 props.children 은 My Hobbies : Racing로 대체된다. 꼭 text가 아니라 함수 혹은 react Component 등으로 대체될 수 있다.
+
+
+
+### State property
+
+rendering 되는 값을 하드코딩하지 않고, State property 를 이용하여 Object의 값으로 변경하여 접근할 수 있다.
+
+```javascript
+class App extends Component {
+  state = {
+    persons : [
+      { name : "Max", age : 28},
+    ]
+  }
+  render(){
+      return (
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+      </div>
+    );
+  }
+}
+```
+
+State property 는 Component class를 상속한 class에서 사용할 수 있다.
+
+
+
+### State and Props
+
+
+
+
 
 
 
