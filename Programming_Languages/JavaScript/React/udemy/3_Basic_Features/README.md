@@ -194,9 +194,281 @@ State property 는 Component class를 상속한 class에서 사용할 수 있다
 
 ### State and Props
 
+props - 부모 컴포넌트가 자식 컴포넌트에게 넘겨주는 값들
+
+state - 컴포넌트 내부에서 선언하여 내부에서 변경할 수 있는 값들
+
+props와 state가 변경될 때 해당 Component들이 다시 render된다.
 
 
 
+사실 위에 함수형 Component 정의할 땐 props를 마치 함수의 인자처럼 사용했는데, class로 Component를 상속받으면 인자로 명시하지 않아도 this를 통해 접근을 할 수 있다.
+
+
+
+### Handling Events with Method using state
+
+```javascript
+class App extends Component {
+  state = {
+    persons : [
+      { name : "Max", age : 28},
+    ]
+  }
+
+  switchNameHandler = () => {
+    this.setState({
+      persons : [
+        { name : "Dore", age : Math.floor(Math.random() * 30)},
+      ]
+    },)
+  }
+
+  render(){
+      return (
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <button onClick={this.switchNameHandler}>Switch Name</button>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+      </div>
+    );
+  }
+}
+```
+
+button onClick 에 의해 버튼을 누르면 this.switchNameHandler 라는 함수가 실행이 될 것이다. 여기까지는 똑같으나, 핵심은 this.setState에 현재 state의 특정 property만을 선택적으로 변경하는 것에 있다.
+
+Component는 setState라는 메소드를 갖고 있어, state의 특정 property만 update를 해주는 기능을 제공한다.
+
+
+
+### State in Functional Component -> Hooks
+
+class 형식의 Component는 state라는 변수를 setState 메소드로 변경하여 새로 render 하였지만, 이번엔 Functional Component로 같은 기능을 만들어보자.
+
+이전에 중요한 한가지, React component 의 이름은 맨 앞이 소문자로 시작해서는 안된다. 
+
+> React component names must always start with a non-lowercase letter.
+
+```javascript
+import React, { useState } from 'react';
+const App = (props) => {
+  const [personState, setPersonState] = useState({
+    persons : [
+      { name : "Max", age : 28},
+    ],
+    OtherState : 'some other value'
+  });
+
+  const switchNameHandler = () => {
+    setPersonState({
+      persons : [
+        { name : "Dore", age : Math.floor(Math.random() * 30)},
+      ]
+    },)
+  }
+
+  return (
+    <div className="App">
+      <h1>Hi, I'm a React App</h1>
+      <button onClick={switchNameHandler}>Switch Name</button>
+      <Person name={personState.persons[0].name} age={personState.persons[0].age}/>
+    </div>
+  );
+}
+```
+
+클릭하면 이름과 나이가 변경되는 기능이 똑같이 구현되어 있다.
+
+- useState는 functional component에 hook을 설정해주는 함수이다. 
+- useState는 리턴값으로 personState엔 state를, setPersonState엔 personState를 변경하는 메소드를 담는다.
+-  switchNameHandler 라는 함수를 정의하여 onClick 마다 setPersonState 함수를 작동시키게끔 만듬.
+
+**중요한 것은 React Hook을 사용하면 personState가 새 값으로 완전히 바뀐다는 것이다.**
+
+그래서 함수 내에 useState를 여러번 사용하여 multiple state를 정의하여 독립적으로 사용하는 것이 훨씬 낫다.
+
+
+
+### Stateful vs Stateless
+
+- internal state management가 있으면 stateful, 없으면 stateless
+- Stateless -> presentational, no internal logic
+- Stateful -> Container component
+
+Stateless component가 최대한 많이 구성되어야 Main Logic이 clear해야 한다.
+
+
+
+### Passing Methods References Between Components
+
+다른 Class나 다른 file에 있는 Component에 현재 Component의 메소드를 전달해보자.
+
+```javascript
+class App extends Component {
+  state = {
+    persons : [
+      { name : "Max", age : 28},
+    ]
+  }
+
+  switchNameHandler = (newName) => {
+    this.setState({
+      persons : [
+        { name : newName, age : Math.floor(Math.random() * 30)},
+      ]
+    },)
+  }
+
+  render(){
+      return (
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <button onClick={this.switchNameHandler.bind(this, "badass")}>Switch Name</button>
+        <Person 
+          name={this.state.persons[0].name} 
+          age={this.state.persons[0].age}
+          click={this.switchNameHandler.bind(this, "awesomeMan")}/>
+      </div>
+    );
+  }
+}
+
+// person.js
+const person = (props)=>{
+    return (
+    <div>
+        <p onClick={props.click}>I'm {props.name}. I'm {props.age} years old!</p>
+        <p>{props.children}</p>
+    </div>
+    )
+} // for this binding
+```
+
+단순히 props에 추가하여 전달하면 된다.
+
+함수의 인자까지 같이 전달하려면 this bind 시켜 다음 인자에 넣어서 전달하면 된다.
+
+ES6의 Arrow function 을 이용하면 더욱 직관적으로 전달할 수 있다.
+
+```javascript
+render(){
+    return (
+        <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <button onClick={()=>this.switchNameHandler("badass")}>Switch Name</button>
+    <Person 
+        name={this.state.persons[0].name} 
+        age={this.state.persons[0].age}
+        click={()=>this.switchNameHandler("awesomeMan")}/>
+    </div>
+    );
+}
+```
+
+
+
+### Use methods of superior class 
+
+하위 클래스에서 텍스트를 작성하고, 상위 클래스의 메소드가 작동하여 onchange마다 값이 변경되게 해보자.
+
+```javascript
+nameChangeHandler = (event)=>{
+    this.setState({
+        persons : [
+            { name : event.target.value, age : Math.floor(Math.random() * 30)},
+        ]
+    },)
+}
+```
+
+같은 방식으로 changed={this.nameChangeHandler} 로 태그를 전달하고
+
+```javascript
+const person = (props)=>{
+    return (
+    <div>
+        <p onClick={props.click}>I'm {props.name}. I'm {props.age} years old!</p>
+        <p>{props.children}</p>
+        <input type='text' onChange={props.changed} value={props.name}></input>
+    </div>
+    )
+} // for this binding
+```
+
+로 input 태그를 넣고 onChange마다 해당 함수가 작동되게 한다.
+
+**여기서 중요한 부분은 event.target.value를 name 에 집어넣는 것이다.** 이렇게 event 발생시 발생된 event에 대한 정보를 저장하는 것이 있다.
+
+이를 통해 웹 요소들을 동적으로 값을 변경할 수 있다.
+
+또한, value= {props.name} 을 통해 상위 입력값이 변경되면 하위 입력값도 변경되게끔 만들 수 있다. 밑의 gif을 보면 현재 상황을 이해할 수 있을 것이다.
+
+![](./Images/img.gif)
+
+
+
+### Component에 Style 추가하기
+
+- 각 Component 이름과 같은 css를 해당 jsx에 import 해주어야 한다.
+
+```css
+.Person{
+    width: 60%;
+    margin: auto;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+}
+```
+
+```javascript
+// in Person.js
+import './Person.css'
+```
+
+이와 같이 각 컴포넌트별로 css를 정의하여 사용한다.
+
+![](./Images/img2.gif)
+
+- Webpack에 의해 CSS가 dynamically Injected
+
+
+
+### Inline Styling
+
+이건 그냥 css 파일을 따로 정의하지 않고 JSX attribute인 Style을 이용하는 것이다.
+
+```javascript
+render(){
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1x solid blue',
+      padding: '8px'
+    }
+      return (
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <button style={style} onClick={()=>this.switchNameHandler("badass")}>Switch Name</button>
+        <Person 
+          name={this.state.persons[0].name} 
+          age={this.state.persons[0].age}
+          click={()=>this.switchNameHandler("awesomeMan")}
+          changed={this.nameChangeHandler}/>
+      </div>
+    );
+  }
+```
+
+이전과 일치하나 render 메서드에 style Object가 추가되어, jsx에 `style={style}`을 통해 style attribute로 입력한 것이다. 
+
+
+
+### 참고
+
+> [Supported Events in React](https://reactjs.org/docs/events.html#supported-events) 를 참고하여 원하는 event를 찾아서 쓰면 된다.
 
 
 
@@ -228,3 +500,5 @@ State property 는 Component class를 상속한 class에서 사용할 수 있다
 
 
 SVG 이미지를 어떻게 만드는지 알고싶다.
+
+event가 구체적으로 뭔지 이해하고 싶다.
