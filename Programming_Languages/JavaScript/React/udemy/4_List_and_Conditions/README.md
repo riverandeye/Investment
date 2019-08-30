@@ -162,3 +162,8 @@ changed={(event)=>this.nameChangeHandler(event, person.id)}/>
 
 ![](Images/final.gif)
 
+
+
+### Practice
+
+![](Images/Practice.gif)
