@@ -13,7 +13,7 @@
     - index.js : index.html의 dom 객체에 ReactDom을 render 하는 역할을 한다.
     - App.js : 그냥 처음 구현되어있는 App임. index.js에 수렴시켜 merge 하면 됨.
     - App.css : 그냥 처음 구현되어있는 App의 css
-    - App.tets.js : Jasmine 으로 작성된 test code
+    - App.test.js : Jasmine 으로 작성된 test code
 
 
 
@@ -495,10 +495,8 @@ render(){
 }
 ```
 
-.App-logo 라는 className="App-logo" 인 객체 이미지에 이러한 animation을 두는것 같다. 구체적으로 어떻게 사용하는지 알아야겠다. 이걸 알면 뭔가를 짜는게 더 수월해질듯.
+.App-logo 라는 className="App-logo" 인 객체 이미지에 이러한 animation을 두는것 같다. 구체적으로 어떻게 사용하는지 알아야겠다. 이걸 알면 뭔가를 짜는게 더 수월해질듯. // 정호 
 
+SVG 이미지를 어떻게 만드는지 알고싶다. ->   // ? 관훈 
 
-
-SVG 이미지를 어떻게 만드는지 알고싶다.
-
-event가 구체적으로 뭔지 이해하고 싶다.
+event가 구체적으로 뭔지 이해하고 싶다.-> // ? 해나
