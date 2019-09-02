@@ -65,7 +65,7 @@ personList : [
 ```javascript
 persons = (
     <div>
-    {this.state.persons.map(person=>{
+    {[this.state.persons.map(person=>{
      return <Person 
         name={person.name} 
         age={person.age}/>
