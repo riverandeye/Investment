@@ -20,5 +20,5 @@
 
 ### 공부 한 것
 
-- SPA와 Client Side Routing
+- SPA와 Hash 방식을 이용한 Client Side Routing 
 

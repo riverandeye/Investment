@@ -103,17 +103,5 @@ header - https://www.w3schools.com/howto/howto_css_responsive_header.asp
 
 footer - https://codepen.io/slstudios/pen/mJqjeP
 
-
-
-
-
-
-
-
-
-
-
-### Reference
-
-https://poiemaweb.com/js-spa
+SPA - https://poiemaweb.com/js-spa
 
