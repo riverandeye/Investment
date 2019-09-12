@@ -87,3 +87,55 @@ class Persons extends PureComponent{
 ```
 
 이렇게 Person을 정의하자. 이미 다 구현되어 있어서 코드를 복잡하게 할 필요가 없다.
+
+
+
+### How React Updates the DOM
+
+
+
+![1567921189261](Images/2.png)
+
+- shouldComponentUpdate 를 통과한 Component는 render 함수를 수행한다.
+- 이전 Virtual DOM과 새롭게 렌더링되는 Virtual DOM을 비교한다.
+- Virtual DOM은 JSX로 작성되어있으며 REAL DOM 보다 빠르다.
+- Virtual DOM 간 차이가 있으면, 해당 차이가 있는 부분의 real DOM 을 업데이트한다.
+
+
+
+### Rendering Adjacent JSX Element
+
+
+
+불필요하게 <div>로 감싸지는 것을 방지하기 위해 사용하는 방법이다.
+
+```javascript
+const aux = props => props.children;
+
+export default aux;
+```
+
+aux 라는 HOC를 이용하여 
+
+```javascript
+return (
+    <Aux>
+        <p onClick={this.props.click}>I'm {this.props.name}. I'm {this.props.age} years old!</p>
+        <p>{this.props.children}</p>
+        <input type='text' onChange={this.props.changed} value={this.props.name}></input>
+    </Aux>
+```
+
+감싸주면 된다. 그러면 <div> 한 단계가 사라진다.
+
+
+
+### React.Fragment
+
+그냥 aux 저렇게 구현할 필요 없고, Fragment import 해서 갖다 쓰면 된다.
+
+```javascript
+<Fragment>
+    <list of jsx>
+</Fragment>
+```

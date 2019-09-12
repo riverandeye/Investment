@@ -21,8 +21,8 @@
 사실 리액트 프로젝트의 구조 제안은 매우 다양하지만, 이 강의에서 제시하는건 다음과 같다.
 
 - assets -> 이미지, 공통으로 사용되는 알고리즘 등 구현체
-- components -> container를 구성할 때 중복하여 사용되는 컴포넌트의 모임
-- containers -> index.js에서 route 단위로 바인딩되는 대상들의 모임
+- components -> container를 구성할 때 중복하여 사용되는 컴포넌트의 모임 -> **State가 없는 애들**
+- containers -> index.js에서 route 단위로 바인딩되는 대상들의 모임 -> **State가 있는 애들**
 
 
 
