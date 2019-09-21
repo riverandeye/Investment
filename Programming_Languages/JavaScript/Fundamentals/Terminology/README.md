@@ -4,8 +4,6 @@
 
 
 
-
-
 ### Closure
 
 > 함수와 함수가 선언된 영역에 대한 lexical environment 
@@ -120,6 +118,57 @@ MyObject.prototype.getMessage = function() {
 
 
 
+이를 이용하여 **Module Pattern** 을 구현하기도 한다.
+
+```javascript
+const moduleName = (function()=>{
+	// private 변수, 메소드
+                    
+	return {
+    	// public 변수, 메소드                
+	}
+})();
+```
+
+패턴은 대략 이러한 형태를 갖는다. 부모 함수의 스코프를 갖는 객체를 리턴받아 사용한다. 이 때 부모 함수의 변수들에 접근할 수 없어 Private과 같은 효과를 보게 된다.
+
+
+
+```javascript
+const Warrior = (function(){
+
+    // 비공개 멤버변수
+    let health = 100;
+    let age = 25;
+    const updateAge = () =>{
+        age++;
+    }
+
+    return {
+        getHealth(){
+            return health;
+        },
+
+        getAge(){
+            return age;
+        },
+
+        addAge(){
+            updateAge();
+        }
+    }
+})();
+
+console.log(Warrior.age); // undefined
+console.log(Warrior.getAge()); // 25
+Warrior.addAge(); 
+console.log(Warrior.getAge()); // 25
+```
+
+warrior는 객체를 리턴받는데, 해당 객체의 스코프는 임시 함수에서 선언한 변수들을 포함한다. 그러나 리턴된 객체는 해당 변수들에 접근할 수 없어, Private한 효과를 얻을 수 있다.
+
+
+
 ### IIFE
 
 > Immediately Invoked Function Expression
@@ -131,14 +180,6 @@ MyObject.prototype.getMessage = function() {
 ```
 
 함수가 즉시 호출되는 1회성 익명 함수이다. 글로벌 스코프의 전역변수를 최소화하여 충돌을 방지하는 장점이 있다.
-
-
-
-### Module Pattern
-
-
-
-
 
 
 
@@ -194,10 +235,6 @@ at b (repl:2:17)
 ```
 
 만약 Dynamic scoping 으로 정의되었다면, b는 a안에서 호출되었기 때문에 a에서 정의된 aa라는 변수가 b의 scope안에 있을 것이다.
-
-
-
-
 
 
 
