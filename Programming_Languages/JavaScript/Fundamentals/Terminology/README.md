@@ -59,21 +59,64 @@ setupHelp();
 
 위 코드는 각 id를 갖는 DOM Element에 대하여 onfocus 이벤트에 대한 리스너를 달아주는 코드이다. 
 
+onfocus에 넣어준 함수는 scope로 item을 가지고 있다. 언뜻 보면 i값이 변하여 item이란 값을 서로 다르게 할당해 준 것처럼 보이지만, 실제론 서로 다른 함수가 같은 변수를 참조하고 있는 형태이다. 그렇기 때문에 모든 대상의 onfocus에 대해 item의 최종 값인 'age' 의 help 메세지가 출력될 것이다.
 
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>This is a title</title>
-  </head>
-  <body>
-    <p id="help">Helpful notes will appear here</p>
-    <p>E-mail: <input type="text" id="email" name="email"></p>
-    <p>Name: <input type="text" id="name" name="name"></p>
-    <p>Age: <input type="text" id="age" name="age"></p>
-   	<script src="http://yourjavascript.com/99081112322/a.js"></script>
-  </body
-</html>
+
+이런 상황엔 해당 변수를 담는 클로저를 만들어서 각 이벤트리스너로 설정해주는 것이 적절하다.
+
+```javascript
+for (var i = 0; i < helpText.length; i++) {
+    (function() {
+        var item = helpText[i];
+        document.getElementById(item.id).onfocus = function() {
+            showHelp(item.help);
+        }
+    })(); //
+```
+
+**IIFE**가 매번 호출되고, 그때마다 ID별로 listener를 지정해준다. 각 함수가 소멸된 이후에도 scope가 남아있기 때문에 item의 값은 변하지 않고 전달된다. **함수를 새롭게 호출해줌으로써 서로 다른 Scope를 형성하였기 때문에,  각 리스너가 같은 변수를 참조하지 않게 된 것이다**.
+
+
+
+위 상황은 array의 각 item마다 개별적인 함수가 작동하는 것과 일치하므로, forEach문을 사용하여 지정해주는 것 또한 각 콜백이 새로운 scope를 형성하기 때문에 바람직하다.
+
+```javascript
+helpText.forEach(function(text) {
+    document.getElementById(text.id).onfocus = function() {
+        showHelp(text.help);
+    }
+});
+```
+
+
+
+**Getter 함수를 정의할땐 클로저보단 Prototype**
+
+```javascript
+function MyObject(name, message) {
+  this.name = name.toString();
+  this.message = message.toString();
+  this.getName = function() {
+    return this.name;
+  };
+
+  this.getMessage = function() {
+    return this.message;
+  };
+}
+```
+
+this.getName과 this.getMessage는 객체가 발생할 때 마다 매번 reassign 될 이유가 없다. 고로 prototype을 통해 정의해주는 것이 바람직하다.
+
+```javascript
+MyObject.prototype.getName = function() {
+  return this.name;
+};
+MyObject.prototype.getMessage = function() {
+  return this.message;
+};
+```
 
 
 
