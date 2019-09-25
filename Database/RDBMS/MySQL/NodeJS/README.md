@@ -107,19 +107,12 @@ getData();
 
 ```js
 async function getData(){
-    const data = await db.query('SELECT * FROM `Card`');
+    const data = await db.promise().query('SELECT * FROM `Card`');
     console.log(data);
 }
 getData();
 ```
 
-근데 이때 문제는 db.query() 의 리턴이 query객체가 리턴된다. 그래서 db.query를 Promise 화 하여 fetch된 db 정보를 리턴하게 해야 한다.
+정말 깔끔한 코드가 아닐수 없다.
 
-
-
-```js
-const util = require("util");
-db.query = util.promisify(db.query);
-```
-
-util에서 promisify 를 사용하면 이제 data에 쿼리 결과가 리턴된다. (편안)
+\
