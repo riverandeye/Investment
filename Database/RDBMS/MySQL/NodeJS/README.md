@@ -113,6 +113,4 @@ async function getData(){
 getData();
 ```
 
-정말 깔끔한 코드가 아닐수 없다.
-
-\
+비동기 DB 작업을 await 를 통해 깔끔하게 만들어 주었다.
