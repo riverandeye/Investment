@@ -1,6 +1,6 @@
 # Merge-descriptors
 
-> 수많은 패키지에 사용되는 기본 패키지 중 하나
+> Object 간 메소드를 복사해주는 함수
 
 
 
