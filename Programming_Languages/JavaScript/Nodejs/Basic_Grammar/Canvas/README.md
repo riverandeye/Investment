@@ -199,6 +199,8 @@ const ctx = canvas.getContext('2d')
   - 파일 용량 크다
   - 카메라가 카드에 이미지를 기록시 JPG보다 느리다.
 
+
+
 ### Reference
 
 [최성찬 개발자님 github 링크](https://github.com/chsch911028) 
