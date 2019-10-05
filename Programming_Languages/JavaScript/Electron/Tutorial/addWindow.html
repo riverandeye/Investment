@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>리스트에 추가해주는 모달</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <form>
+      <div>
+        <label>아이템을 추가해주라.</label>
+        <input type="text" id="item" autofocus>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit">아이템 추가</button>
+    </form>
+  </div>
+  <script>
+    const electron = require('electron');
+    const {
+      ipcRenderer
+    } = electron;
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', submitform);
+
+    function submitform(e) {
+      e.preventDefault();
+      const item = document.querySelector('#item').value;
+      ipcRenderer.send('item:add', item);
+    }
+  </script>
+</body>
+
+</html>

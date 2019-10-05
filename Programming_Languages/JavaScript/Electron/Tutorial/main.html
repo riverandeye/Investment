@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>대충 새로운 앱</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a class="brand-logo center">대충 목록</a>
+    </div>
+  </nav>
+  <ul></ul>
+  <script>
+    const electron = require('electron');
+    const {
+      ipcRenderer
+    } = electron;
+    const ul = document.querySelector('ul');
+
+    // on 이라는 신호를 받을 때
+    ipcRenderer.on('item:add', function (e, item) {
+      // 추가되면 css 초기화
+      ul.className = "collection";
+      const li = document.createElement('li');
+      li.className = "collection-item";
+      const itemText = document.createTextNode(item);
+      li.appendChild(itemText);
+      ul.appendChild(li);
+    })
+
+    // off 라는 신호를 받을 때
+    ipcRenderer.on('item:clear', function () {
+      ul.innerHTML = '';
+    })
+
+    // 더블클릭 하면 ul 제거
+
+    ul.addEventListener('dblclick', removeItem);
+
+    function removeItem(e) {
+      e.target.remove();
+      // 아무것도 아니면 css 초기화
+      if (ul.children.length === 0) {
+        ul.className = " "
+      }
+    }
+  </script>
+
+</body>
+
+</html>
