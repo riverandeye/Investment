@@ -1,4 +1,9 @@
+# Smart Pointer
+
+
+
 Smart pointer란 
+
 - C++ Template class로 정의됨.
 - 자동적으로 delete call
 
@@ -25,6 +30,3 @@ RAII - Resource Acquisition Is Initialization
 RAII 패턴은 C++ 같이 개발자가 직접 resource 관리를 해주어야 하는 언어에서 leak 을 방지하기 위한 중요한 기법으로
 해당 리소스의 사용 scope이 끝날 경우에 자동으로 해제를 해주며 exception이 발생하거나 하는 경우에도 획득한 자원이 해제됨을 보장하여
 안전한 코드를 작성할 수 있다.
-
-출처: https://wendys.tistory.com/11 [Analog N0te]
-
