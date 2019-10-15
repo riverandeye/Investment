@@ -73,11 +73,17 @@ Property.hasMany(Reservation);
 
 
 
-
-
 **DB 동기화**
 
 연결 후에 해당 모델을 DB와 동기화 하여야 DB를 최신 상태로 업데이트 할 수 있다.
+
+
+
+```javascript
+User.sync()
+Property.sync()
+Reservation.sync()
+```
 
 
 
