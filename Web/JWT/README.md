@@ -105,7 +105,9 @@ HMACSHA256(
 
 #### JWT 동작 방식
 
-사용자가 로그인에 성공하면 JWT가 리턴이 되고, 
+![](https://cdn2.auth0.com/docs/media/articles/api-auth/client-credentials-grant.png)
+
+사용자가 auth 서버에 확인 요청을 하면, access token을 주고, 그걸 통해 API에 접속하게 된다. 여기서 중요한 점은 내 서버에서 계정을 확인하지 않는다는 점이다. 지급된 토큰을 이용하여 접속을 할 수 있게 된다.
 
 
 
