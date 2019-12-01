@@ -1,5 +1,7 @@
 # Docker tutorial step 1
 
+> 도커 컨테이너 배포
+
 
 
 ### 도커 이미지와 컨테이너 기본
@@ -282,7 +284,7 @@ volumes 항목은 호스트와 컨테이너 사이에 파일을 공유할 수 �
 
 localhost:8080로 접속할때 필요한 비밀번호이다. Install suggested plugins를 하고 admin 계정을 생성하면 대충 이런 화면이 뜬다.
 
-![1574953687769](C:\Users\tony0\AppData\Roaming\Typora\typora-user-images\1574953687769.png)
+![1574953687769](images/1574953687769.png)
 
 
 
