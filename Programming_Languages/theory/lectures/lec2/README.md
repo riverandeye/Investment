@@ -8,7 +8,7 @@
 
 **Natural Numbers**
 
-![image-20200121125621667](.\images\image-20200121125621667.png)
+![image-20200121125621667](./images/image-20200121125621667.png)
 
 
 
@@ -16,13 +16,13 @@
 
 (set of strings over alphabet)
 
-![image-20200121125717646](.\images\image-20200121125717646.png)
+![image-20200121125717646](./images/image-20200121125717646.png)
 
 
 
 **Boolean**
 
-![image-20200121125739397](.\images\image-20200121125739397.png)
+![image-20200121125739397](./images/image-20200121125739397.png)
 
 
 
@@ -30,13 +30,13 @@
 
 (List of Integer 예시)
 
-![image-20200121125817758](.\images\image-20200121125817758.png)
+![image-20200121125817758](./images/image-20200121125817758.png)
 
-**Binary Tree**![image-20200121133406842](.\images\image-20200121133406842.png)
+**Binary Tree**![image-20200121133406842](./images/image-20200121133406842.png)
 
 위 방법은 (node, left, right) 순으로 notation을 할 때 사용되는 방식이다.
 
-![image-20200121133521595](images\image-20200121133521595.png)
+![image-20200121133521595](./images/image-20200121133521595.png)
 
 위 방법은 (left, right) 로 notation을 할 때 사용되는 방식이다.
 
@@ -44,7 +44,7 @@
 
 **Propositional Logic (명제 논리)**
 
-![image-20200121134316585](images\image-20200121134316585.png)
+![image-20200121134316585](./images/image-20200121134316585.png)
 
 이건 뭐 익숙하다. 
 
@@ -61,15 +61,15 @@
 
 구조적 유도를 통해 여러 예제를 증명해보자.
 
-![image-20200121140122702](images\image-20200121140122702.png)
+![image-20200121140122702](./images/image-20200121140122702.png)
 
 
 
 먼저 Base Case 인 3인 경우를 증명하고, x와 y가 3의 배수일 때(substructure 만족), x+y가 3의 배수임을 보였다. (all structure 만족)
 
-![image-20200121141839060](images\image-20200121141839060.png)
+![image-20200121141839060](./images/image-20200121141839060.png)
 
-![image-20200121140423229](images\image-20200121140423229.png)
+![image-20200121140423229](./images/image-20200121140423229.png)
 
 주어진 문제는 해당 inference rule을 만족하는 S 에 대해서 x가 S에 포함될 시 l(x)와 r(x)가 같다는 것을 증명하라는 것이다. 
 
@@ -82,14 +82,14 @@ Inductive case를 두가지로 나누어 증명하면
 
 
 
-![image-20200121140438990](images\image-20200121140438990.png)
+![image-20200121140438990](./images/image-20200121140438990.png)
 
 
 
 읽어보면 이해 될 것이다.
 
 
-![image-20200121140457089](images\image-20200121140457089.png)
+![image-20200121140457089](./images/image-20200121140457089.png)
 
 **결론**
 
