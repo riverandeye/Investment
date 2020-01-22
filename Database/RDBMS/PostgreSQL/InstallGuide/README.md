@@ -32,7 +32,7 @@ Shall the new role be allowed to create more new roles? (y/n) n
 
 
 
-![image-20200122133942691](C:\Users\tony0\Desktop\github\Investment\Database\RDBMS\PostgreSQL\InstallGuide\images\image-20200122133942691.png)
+![image-20200122133942691](images\image-20200122133942691.png)
 
 
 
@@ -46,7 +46,7 @@ DB 명령어로도 생성할 수 있다.
 
 
 
-![image-20200122134223036](C:\Users\tony0\Desktop\github\Investment\Database\RDBMS\PostgreSQL\InstallGuide\images\image-20200122134223036.png)
+![image-20200122134223036](images\image-20200122134223036.png)
 
 
 
@@ -135,7 +135,7 @@ service postgresql stop
 
 ### 서버에 접근 가능한 IP 설정
 
-![image-20200122143511303](C:\Users\tony0\Desktop\github\Investment\Database\RDBMS\PostgreSQL\InstallGuide\images\image-20200122143511303.png)
+![image-20200122143511303](images\image-20200122143511303.png)
 
 이 위치가 postgresql 설정 파일의 위치이다. 여기서, listen_address를 지정해주면 해당 지정해준 address 에서 접근 할 수 있다. 우선 모든 곳에서 접근이 가능하게 끔 '*' 설정을 해주자.
 
@@ -147,7 +147,7 @@ listen_addresses = '*'
 
 서버를 재시작 한 후 접근하면 다른 오류가 발생할 것이다.
 
-![image-20200122145356346](C:\Users\tony0\Desktop\github\Investment\Database\RDBMS\PostgreSQL\InstallGuide\images\image-20200122145356346.png)
+![image-20200122145356346](images\image-20200122145356346.png)
 
 pg_hba.conf 파일에 entry 설정이 되어있지 않다는 것이다. 해당 파일을 찾아서, 밑의 내용을 추가해주자.
 
