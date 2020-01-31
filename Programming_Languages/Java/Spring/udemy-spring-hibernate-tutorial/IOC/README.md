@@ -125,3 +125,11 @@ Configuration을 입력함으로써 Container 를 만들고, 해당 Container에
 
 이렇게 하면, 우리의 App은 Configureable하게 된 것이고, Bean에서 서로 다른 class를 부름으로써 쉽게 변경이 가능하다.
 
+
+
+#### Why do we specify the Coach interface in getBean()?
+
+*Behaves the same as getBean(String), but provides a measure of type safety by throwing a BeanNotOfRequiredTypeException if the bean is not of the required type. This means that ClassCastException can't be thrown on casting the result correctly, as can happen with getBean(String).*
+
+
+
