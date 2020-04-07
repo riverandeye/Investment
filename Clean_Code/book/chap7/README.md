@@ -105,7 +105,3 @@ public List<RecordedGrip> retrieveSection(String sectionName) {
 - Source와 Location에 대한 충분한 context를 exception에 담아 전달하자.
 - 로그에도 Informative한 error message를 남기자
 
-
-
-#### Define Exception Classes in Terms of a Caller's Needs
-
