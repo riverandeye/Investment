@@ -7,14 +7,16 @@
 *.pptx
 *.docx
 *.ppt
+*.pdf
 *.pptx
 *.xls
 *.xlsx
-*.pdf
+*.mk
+MAKEFILE
 
 # logs
 *.log
-upload/
+upload/s
 logs/
 
 # OSfiles
