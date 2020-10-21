@@ -7,15 +7,15 @@ export default class Subject {
     this.observers = [];
   }
 
-  registerObserver(observer: Observer) {
+  public registerObserver(observer: Observer) {
     this.observers.push(observer);
   }
 
-  removeObserver(observer: Observer) {
+  public removeObserver(observer: Observer) {
     this.observers = this.observers.filter((v) => v !== observer);
   }
 
-  notifyObserver(subject: Subject) {
+  private notifyObserver(subject: Subject) {
     this.observers.forEach((observer) => observer.update(subject));
   }
 }
