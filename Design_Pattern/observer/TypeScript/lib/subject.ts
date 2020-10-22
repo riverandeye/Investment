@@ -15,7 +15,7 @@ export default class Subject {
     this.observers = this.observers.filter((v) => v !== observer);
   }
 
-  private notifyObserver(subject: Subject) {
+  protected notifyObserver(subject: Subject) {
     this.observers.forEach((observer) => observer.update(subject));
   }
 }
