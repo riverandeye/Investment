@@ -53,6 +53,7 @@ node * createNode(Element data){
 
 bool findplace(node *now, Element data){
     if(now->data == data){
+        // 중복된 key를 입력할 수 있게 하려면, 구조체에 count를 두는 방법이 더 효율적입니다. 
         printf("You cannot push %d since it already exists in the tree\n",data);
         return false;
     }
@@ -156,7 +157,6 @@ void delete(BST *bst, Element data){
         return;
     }
 
-    node *targetParent = target->parent;
     node *leftchild = target->left;
     node *rightchild = target->right;
     
