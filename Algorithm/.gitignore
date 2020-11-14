@@ -1,1 +1,5 @@
 *.out
+.idea
+.vscode
+*.iml
+/out
